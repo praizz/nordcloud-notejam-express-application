@@ -1,16 +1,14 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nordcloud-notejam
-  annotations:
-    # fluxcd.io/automated: "true"
+  labels:
+    app: nordcloud-notejam
 spec:
   replicas: 3
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: nordcloud-notejam
   template:
     metadata:
       labels:
@@ -18,13 +16,13 @@ spec:
     spec:
       containers:
       - name: nordcloud-notejam
-        image: REGISTRY/IMAGE:TAG
+        image: $ECR_REGISTRY/$ECR_REPOSITORY:latest
         ports:
         - containerPort: 3000
         resources:
           requests:
             cpu: 250m
+            memory: 
           limits:
             cpu: 500m
-
-
+            memory: 
