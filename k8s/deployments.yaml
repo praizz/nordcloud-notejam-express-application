@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nordcloud-notejam
+  annotations:
+    # fluxcd.io/automated: "true"
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: nordcloud-notejam
+    spec:
+      containers:
+      - name: nordcloud-notejam
+        image: REGISTRY/IMAGE:TAG
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+
+
