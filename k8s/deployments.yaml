@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nordcloud-notejam
-        image: $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        image: $ECR_REGISTRY/$ECR_REPOSITORY:dev-${{ github.run_number }}
         ports:
         - containerPort: 3000
         resources:
