@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: nordcloud-notejam
@@ -11,10 +11,4 @@ spec:
     name: nordcloud-notejam
   minReplicas: 3
   maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
+  targetCPUUtilizationPercentage: 50
